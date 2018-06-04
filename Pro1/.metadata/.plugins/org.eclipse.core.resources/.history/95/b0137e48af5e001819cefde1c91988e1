@@ -1,0 +1,31 @@
+package packageProyecto1;
+
+import java.util.ArrayList;
+
+public class Paso {
+	public String codigo;
+	public static int counter = 0;
+	public String pregunta;
+	
+	
+	public Paso(String pregunta) {
+		this.pregunta = pregunta;
+		codigo = "P-" + counter;
+		counter++;
+	}
+	public String getCodigo() {
+		return codigo;
+	}
+	public String getPregunta() {
+		return pregunta;
+	}
+	public void setPregunta(String pregunta) {
+		this.pregunta = pregunta;
+	}
+	public void print() {
+		System.out.println(pregunta);
+	}
+	public String toString() {
+		return pregunta;
+	}
+}

@@ -1,0 +1,11 @@
+package packageProyecto1;
+
+public class main {
+
+	public static void main(String[] args) {
+		System.out.println("hola mundo");
+		Paso caca = new Paso("hola", true);
+	}
+	
+	
+}

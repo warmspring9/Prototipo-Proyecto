@@ -1,0 +1,17 @@
+package packageProyecto1;
+
+public class RespuestaCorta extends Paso {
+	public String respuesta;
+	
+	public RespuestaCorta(String pregunta) {
+		super(pregunta);
+	}
+	public void print() {
+		super.print();
+		System.out.println(respuesta);
+		System.out.println("________");
+	}
+	public void llenarForm(String respuesta) {
+		this.respuesta = respuesta;
+	}
+}

@@ -1,0 +1,81 @@
+package packageProyecto1;
+
+import java.util.Scanner;
+
+public class main {
+	static Controlador controlador = new Controlador();
+	static Scanner scan = new Scanner(System.in);
+	
+	
+	public static void main(String[] args) {
+		main console = new main(); 
+		console.logIn();
+		console.menu();
+		
+		
+		
+		
+	}
+	
+	public String pedirString(String campo) {
+		String respuestas;
+		System.out.println("Insert " + campo);
+		while (!scan.hasNext()) {
+			System.out.println("Please enter a valid " + campo);
+			scan.next();
+		}
+		respuestas = scan.next();
+		return respuestas;
+	}
+	
+	public void logIn() {
+		
+		String username;
+		String password;
+		do {
+			username = pedirString("username");
+			password = pedirString("password");
+		} while(!controlador.logIn(username, password));
+	}
+
+	public void agregarUsuario() {
+		String username;
+		String password;
+		Grupo grupo;
+		do {
+			username = pedirString("username");
+			password = pedirString("password");
+			grupo = controlador.escogerGrupo();
+		} while (controlador.crearUsuario(username, password, grupo));
+	}
+	
+	public boolean pedirOpcion() {
+		int respuesta;
+		while (!scan.hasNextInt()) {
+			System.out.println("Por favor ingrese 1 para si 0 para no");
+			scan.next();
+		}
+		respuesta = scan.nextInt();
+		return (respuesta == 1)?true:false;
+	}
+	
+	public void crearProceso() {
+		Proceso proceso = controlador.crearProceso();
+		
+		System.out.println("Desea agregar una tarea 1 para si 0 para no");
+		boolean op = pedirOpcion();
+		while (op) {
+			controlador.crearTarea(proceso);
+			
+			System.out.println("Desea agregar un paso 1 para si 0 para no");
+			boolean op2 = pedirOpcion();
+			while (op2) {
+				
+			}
+		}
+	}
+	public void menu() {
+		
+	}
+	
+}

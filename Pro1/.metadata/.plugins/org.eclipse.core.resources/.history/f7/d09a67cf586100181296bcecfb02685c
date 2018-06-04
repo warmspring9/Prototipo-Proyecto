@@ -1,0 +1,40 @@
+package packageProyecto1;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+public class Proceso {
+	public String codigo;
+	public static int counter = 0;
+	public LocalDateTime fecha;
+	public ArrayList<Tarea> tareas = new ArrayList<Tarea>();
+	
+	public Proceso() {
+		codigo = "Pr-" + counter;
+		counter++;
+		fecha = LocalDateTime.now();
+	}
+	
+	public void agregarTarea(Tarea ingresable) {
+		tareas.add(ingresable);
+	}
+	
+	public String getCodigo() {
+		return codigo;
+	}
+	
+	public Tarea get(int e) {
+		return tareas.get(e);
+	}
+	
+	public int size() {
+		return tareas.size();
+	}
+	public int count() {
+		int total = 0;
+		for(int i = 0; i < tareas.size(); i++) {
+			total += tareas.get(i).count();
+		}
+		return total;
+	}
+}

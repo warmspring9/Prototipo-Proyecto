@@ -1,0 +1,27 @@
+package packageProyecto1;
+
+import java.util.ArrayList;
+
+public class SeleccionMult extends Paso{
+	public ArrayList<String> respuestas;
+	public int seleccion;
+	
+	public SeleccionMult(String pregunta) {
+		super(pregunta);
+		respuestas = new ArrayList<String>();
+	}
+	public void agregarRespuestas(String respuesta) {
+		respuestas.add(respuesta);
+	}
+	public void seleccionarForm(int respuesta) {
+		seleccion = respuesta;
+	}
+	public void print() {
+		super.print();
+		for (int i = 0; i < respuestas.size(); i++) {
+			System.out.print(i + " ");
+			System.out.println(respuestas.get(i));
+		}
+		System.out.println("Seleccione uno");
+	}
+}

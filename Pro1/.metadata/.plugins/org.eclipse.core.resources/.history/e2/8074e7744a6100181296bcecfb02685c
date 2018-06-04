@@ -1,0 +1,39 @@
+package packageProyecto1;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+public class Historial {
+	public Instance instancia;
+	public ArrayList<Paso> pasosCompletados = new ArrayList<Paso>();
+	public String usuario;
+	public LocalDateTime fecha;
+	public boolean completado = false;
+	public int estado = 0;
+	
+	public Historial(String usuario, Instance instancia) {
+		this.instancia = instancia;
+		this.usuario = usuario;
+		fecha = LocalDateTime.now();
+	}
+	public void deleteInstance() {
+		instancia = null;
+	}
+	public String getUsuario() {
+		return usuario;
+	}
+	
+	public Instance getInstance() {
+		if(instancia == null) {
+			System.out.println("Instancia ya no existe");
+		}
+		return instancia;
+	}
+	
+	public void insertPaso(Paso paso) {
+		pasosCompletados.add(paso);
+	}
+	public Paso getPaso(int i) {
+		return pasosCompletados.get(i);
+	}
+}

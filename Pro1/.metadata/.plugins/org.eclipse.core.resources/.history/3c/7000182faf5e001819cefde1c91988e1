@@ -1,0 +1,46 @@
+package packageProyecto1;
+
+import java.util.ArrayList;
+
+public class Paso {
+	public String codigo;
+	public static int counter = 0;
+	public String pregunta;
+	
+	
+	public Paso(String pregunta) {
+		this.pregunta = pregunta;
+		codigo = "P-" + counter;
+		counter++;
+		if(llenado) {
+			respuesta = "";
+		}else {
+			respuestas = new ArrayList<String>();
+		}		
+	}
+	public void agregarRespuestas(String respuesta) {
+		respuestas.add(respuesta);
+	}
+	public String getCodigo() {
+		return codigo;
+	}
+	public String getPregunta() {
+		return pregunta;
+	}
+	public void setPregunta(String pregunta) {
+		this.pregunta = pregunta;
+	}
+	public void seleccionarForm(int respuesta) {
+		seleccion = respuesta;
+	}
+	public void print() {
+		System.out.println(pregunta);
+			for (int i = 0; i < respuestas.size(); i++) {
+				System.out.println(respuestas.get(i));
+				System.out.println("Seleccione uno");
+			}
+	}
+	public String toString() {
+		return pregunta;
+	}
+}

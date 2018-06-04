@@ -1,0 +1,48 @@
+package packageProyecto1;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Grupo implements Serializable{
+	ArrayList<Usuario> Usuarios = new ArrayList<Usuario>(100);
+	String nombre;
+		
+	public Grupo(String nombre) {
+		this.nombre = nombre;
+	}
+	public void ingresarUsuario(Usuario sujeto) {
+		Usuarios.add(sujeto);
+	}
+	public int indiceUsuario(String username) {
+		for (int i = 0; i < Usuarios.size(); i++) {
+			if(Usuarios.get(i).getUsername().equals(username)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	public String getUsername(int position) {
+		return Usuarios.get(position).getUsername();
+	}
+	public String getPassword(int position) {
+		return Usuarios.get(position).getPassword();
+	}
+	public int getSize() {
+		return Usuarios.size();
+	}
+	public boolean buscarUsuario(String username) {
+		if(indiceUsuario(username) == -1) {
+			return false;
+		}
+		return true;
+	}
+	public void eliminarUsuario(String username) throws Exception {
+		if(!buscarUsuario(username)) {
+			throw new Exception ("usuario que intento eliminar no existe"); 
+		}
+		Usuarios.remove(indiceUsuario(username));
+	}
+	public String getNombre() {
+		return nombre;
+	}
+}

@@ -1,0 +1,24 @@
+package packageProyecto1;
+
+import java.util.ArrayList;
+
+public class Tarea {
+	public static int counter = 0;
+	public String codigo;
+	public ArrayList<Paso> Pasos = new ArrayList<Paso>();
+	public Grupo group;
+	
+	public Tarea(Grupo group) {
+		this.group = group;
+		codigo = "T-" + counter;
+		counter++;
+	}
+	
+	public void agregarPaso(Paso ingresado) {
+		Pasos.add(ingresado);
+	}
+	
+	public String getCodigo() {
+		return codigo;
+	}
+}

@@ -1,0 +1,27 @@
+package packageProyecto1;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+public class Historial {
+	public Instance instancia;
+	public ArrayList<Paso> pasosCompletados = new ArrayList<Paso>();
+	public Usuario usuario;
+	public LocalDateTime fecha;
+	
+	public Historial(Paso paso,Tarea tarea, Usuario usuario, Instance instancia) {
+		this.instancia = instancia;
+		this.usuario = usuario;
+		fecha = LocalDateTime.now();
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	
+	public void insertPaso(Paso paso) {
+		pasosCompletados.add(paso);
+	}
+	public Paso getPaso(int i) {
+		return pasosCompletados.get(i);
+	}
+}

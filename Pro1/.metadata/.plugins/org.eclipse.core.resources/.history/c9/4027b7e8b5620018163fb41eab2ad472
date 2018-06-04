@@ -1,0 +1,24 @@
+package packageProyecto1;
+
+import java.util.Scanner;
+
+public class RespuestaCorta extends Paso {
+	String respuesta;
+	
+	public RespuestaCorta(String pregunta, Grupo grupo) {
+		super(pregunta,grupo,1);
+	}
+	public void print() {
+		super.print();
+		System.out.println(respuesta);
+		System.out.println("________");
+	}
+	public void llenarForm(String respuesta) {
+		this.respuesta = respuesta;
+	}
+	public void completar() {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Ingrese su respuestas");
+		respuesta = scan.next();
+	}
+}

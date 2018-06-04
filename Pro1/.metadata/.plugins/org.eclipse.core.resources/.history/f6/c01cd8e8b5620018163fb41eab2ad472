@@ -1,0 +1,39 @@
+package packageProyecto1;
+
+public class Paso {
+	String codigo;
+	public static int counter = 0;
+	String pregunta;
+	Grupo grupo;
+	int tipo;
+	
+	public Paso(String pregunta, Grupo grupo,int tipo) {
+		this.pregunta = pregunta;
+		this.grupo = grupo;
+		codigo = "P-" + counter;
+		counter++;
+	}
+	
+	public String getCodigo() {
+		return codigo;
+	}
+	
+	public String getPregunta() {
+		return pregunta;
+	}
+	
+	public void setPregunta(String pregunta) {
+		this.pregunta = pregunta;
+	}
+	
+	public void print() {
+		System.out.println(pregunta);
+	}
+	
+	public Grupo getGrupo() {
+		return grupo;
+	}
+	public int getTipo() {
+		return tipo;
+	}
+}
