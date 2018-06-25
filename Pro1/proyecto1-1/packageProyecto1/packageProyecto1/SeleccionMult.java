@@ -1,9 +1,14 @@
 package packageProyecto1;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SeleccionMult extends Paso{
+public class SeleccionMult extends Paso implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ArrayList<String> respuestas;
 	int seleccion;
 	

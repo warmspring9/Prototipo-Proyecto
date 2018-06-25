@@ -3,6 +3,10 @@ package packageProyecto1;
 import java.io.Serializable;
 
 public class Paso implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String codigo;
 	public static int counter = 0;
 	String pregunta;

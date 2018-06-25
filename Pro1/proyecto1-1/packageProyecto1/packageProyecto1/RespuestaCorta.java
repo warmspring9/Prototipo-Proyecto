@@ -1,8 +1,13 @@
 package packageProyecto1;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class RespuestaCorta extends Paso {
+public class RespuestaCorta extends Paso implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String respuesta;
 	
 	public RespuestaCorta(String pregunta, Grupo grupo) {

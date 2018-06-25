@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Tarea implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static int counter = 0;
 	String codigo;
 	ArrayList<Paso> Pasos = new ArrayList<Paso>();
