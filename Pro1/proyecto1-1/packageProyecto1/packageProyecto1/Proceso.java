@@ -5,6 +5,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Proceso implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String codigo;
 	public static int counter = 0;
 	String nombre;

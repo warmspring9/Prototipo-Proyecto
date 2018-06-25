@@ -1,6 +1,8 @@
 package packageProyecto1;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario  implements Serializable{
 	public String username;
 	public String password;
 	

@@ -1,17 +1,16 @@
 package packageProyecto1;
 
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
-
-import javax.print.attribute.DateTimeSyntax;
-
 public class Instance implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Proceso proceso;
 	String codigo;
 	public static int counter = 0;

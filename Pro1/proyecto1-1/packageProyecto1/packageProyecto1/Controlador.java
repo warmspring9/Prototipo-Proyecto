@@ -11,7 +11,10 @@ import java.util.Scanner;
 import java.io.Serializable;
 
 public class Controlador implements Serializable{
-	Scanner scan = new Scanner(System.in);
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ArrayList<Grupo> grupos = new ArrayList<Grupo>();
 	ArrayList<Instance> instancias = new ArrayList<Instance>();
 	ArrayList<Proceso> procesos = new ArrayList<Proceso>();
@@ -30,17 +33,19 @@ public class Controlador implements Serializable{
 		return instance;
 	}
 	
-	public void GuardarDatos(Controlador data) throws FileNotFoundException, IOException{
+	public static void GuardarDatos(Controlador data) throws FileNotFoundException, IOException{
         FileOutputStream file = new FileOutputStream("persistencia.dat");
+        file.write(("").getBytes());
         ObjectOutputStream stream = new ObjectOutputStream(file);
         stream.writeObject(data);
         stream.close();
         
     }
-    public Controlador CargarDatos() throws FileNotFoundException, IOException, ClassNotFoundException{
+    public static Controlador CargarDatos() throws FileNotFoundException, IOException, ClassNotFoundException{
         FileInputStream file = new FileInputStream("persistencia.dat");
         ObjectInputStream stream = new ObjectInputStream(file);
         Controlador data = (Controlador)stream.readObject();
+        stream.close();
         return data;
     }
 
@@ -91,7 +96,7 @@ public class Controlador implements Serializable{
 	}
 	
 	public Grupo escogerGrupo() throws Exception {
-		
+		Scanner scan = new Scanner(System.in);
 		for(int i = 0; i < grupos.size();i++) {
 			System.out.println(i + " - " + grupos.get(i).getNombre());
 		}
@@ -109,7 +114,7 @@ public class Controlador implements Serializable{
 		    number = scan.nextInt();
 		} while (number < 0 || number > grupos.size());
 		System.out.println("Thank you!");
-		
+		scan.close();
 		return grupos.get(number);
 	}
 	
@@ -128,6 +133,7 @@ public class Controlador implements Serializable{
 	}
 	
 	public String pedirString(String campo) {
+		Scanner scan = new Scanner(System.in);
 		String respuestas;
 		System.out.println("Insert " + campo);
 		while (!scan.hasNext()) {
@@ -135,21 +141,24 @@ public class Controlador implements Serializable{
 			scan.next();
 		}
 		respuestas = scan.next();
+		scan.close();
 		return respuestas;
 	}
 	
 	public boolean pedirOpcion() {
+		Scanner scan = new Scanner(System.in);
 		int respuesta;
 		while (!scan.hasNextInt()) {
 			System.out.println("Please choose 1 or 0");
 			scan.next();
 		}
 		respuesta = scan.nextInt();
+		scan.close();
 		return (respuesta == 1)?true:false;
 	}
 	
 	public Proceso escogerProceso() throws Exception {
-		
+		Scanner scan = new Scanner(System.in);
 		for(int i = 0; i < procesos.size();i++) {
 			System.out.println(i + " - " + procesos.get(i).getCodigo());
 		}
@@ -167,6 +176,7 @@ public class Controlador implements Serializable{
 		    number = scan.nextInt();
 		} while (number < 0 || number > procesos.size());
 		System.out.println("Thank you!");
+		scan.close();
 		return procesos.get(number);
 	}
 	
@@ -211,6 +221,7 @@ public class Controlador implements Serializable{
 	}
 	
 	public Tarea escogerTarea(Proceso proceso) throws Exception {
+		Scanner scan = new Scanner(System.in);
 		for(int i = 0; i < proceso.size(); i++) {
 			System.out.println(i + " - " + proceso.get(i).getCodigo());
 		}
@@ -228,6 +239,7 @@ public class Controlador implements Serializable{
 		    number = scan.nextInt();
 		} while (number < 0 || number > proceso.size());
 		System.out.println("Thank you!");
+		scan.close();
 		return proceso.get(number);
 	}
 	
@@ -249,7 +261,7 @@ public class Controlador implements Serializable{
 	}
 	
 	public void eliminarPaso(Proceso proceso) throws Exception {
-		
+		Scanner scan = new Scanner(System.in);
 		Tarea tarea = escogerTarea(proceso);
 		for(int i = 0; i < tarea.count();i++ ) {
 			System.out.println(i + " - " + tarea.get(i).getCodigo());
@@ -265,6 +277,7 @@ public class Controlador implements Serializable{
 		    number = scan.nextInt();
 		} while (number < 0 || number > tarea.count());
 		System.out.println("Thank you!");
+		scan.close();
 		tarea.eliminarPaso(number);
 	}
 	
