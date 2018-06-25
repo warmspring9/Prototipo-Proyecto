@@ -13,15 +13,13 @@ public class Instance implements Serializable{
 	private static final long serialVersionUID = 1L;
 	Proceso proceso;
 	String codigo;
-	public static int counter = 0;
 	int tareas = 0;
 	int pasos = 0;
 	boolean completado = false;
 	
-	public Instance(Proceso proceso) {
+	public Instance(Proceso proceso,int counter) {
 		this.proceso = proceso;
 		codigo = "Ins-" + counter;
-		counter++;
 	}
 	public Proceso getProceso() {
 		return proceso;

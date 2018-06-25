@@ -15,14 +15,19 @@ public class Controlador implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	ArrayList<Grupo> grupos = new ArrayList<Grupo>();
-	ArrayList<Instance> instancias = new ArrayList<Instance>();
-	ArrayList<Proceso> procesos = new ArrayList<Proceso>();
-	private static Controlador instance = null;
-	String usuario;
-	Grupo grupo;
+	static Scanner scan = new Scanner(System.in);
+	private ArrayList<Grupo> grupos = new ArrayList<Grupo>();
+	private ArrayList<Instance> instancias = new ArrayList<Instance>();
+	private ArrayList<Proceso> procesos = new ArrayList<Proceso>();
+	private int consecutivoProceso = 0;
+	private int consecutivoTarea = 0;
+	private int consecutivoPaso = 0;
+	private int consecutivoInstancia = 0;
+	private String usuario;
+	private Grupo grupo;
 	private String Admin = "Admin";
 	private String AdminPass = "4DM1N";
+	private static Controlador instance = null;
 	protected Controlador() {}
 	
 	public static Controlador getInstance() {
@@ -96,7 +101,7 @@ public class Controlador implements Serializable{
 	}
 	
 	public Grupo escogerGrupo() throws Exception {
-		Scanner scan = new Scanner(System.in);
+		
 		for(int i = 0; i < grupos.size();i++) {
 			System.out.println(i + " - " + grupos.get(i).getNombre());
 		}
@@ -114,26 +119,26 @@ public class Controlador implements Serializable{
 		    number = scan.nextInt();
 		} while (number < 0 || number > grupos.size());
 		System.out.println("Thank you!");
-		scan.close();
 		return grupos.get(number);
 	}
 	
 	public Proceso crearProceso(String nombre) {
 		
-		Proceso proceso = new Proceso(nombre);
+		Proceso proceso = new Proceso(nombre,consecutivoProceso);
+		consecutivoProceso++;
 		procesos.add(proceso);
 		return proceso;
 	}
 	
 	public Tarea crearTarea(Proceso proceso) throws Exception {
 		
-		Tarea tarea = new Tarea(escogerGrupo());
+		Tarea tarea = new Tarea(escogerGrupo(),consecutivoTarea);
+		consecutivoTarea++;
 		proceso.agregarTarea(tarea);
 		return tarea;
 	}
 	
 	public String pedirString(String campo) {
-		Scanner scan = new Scanner(System.in);
 		String respuestas;
 		System.out.println("Insert " + campo);
 		while (!scan.hasNext()) {
@@ -141,7 +146,7 @@ public class Controlador implements Serializable{
 			scan.next();
 		}
 		respuestas = scan.next();
-		scan.close();
+		 
 		return respuestas;
 	}
 	
@@ -153,14 +158,14 @@ public class Controlador implements Serializable{
 			scan.next();
 		}
 		respuesta = scan.nextInt();
-		scan.close();
+		 
 		return (respuesta == 1)?true:false;
 	}
 	
 	public Proceso escogerProceso() throws Exception {
 		Scanner scan = new Scanner(System.in);
 		for(int i = 0; i < procesos.size();i++) {
-			System.out.println(i + " - " + procesos.get(i).getCodigo());
+			System.out.println(i + " - " + procesos.get(i).getNombre());
 		}
 		if(procesos.size()==0) {
 			throw new Exception ("There are no proceses available");
@@ -176,13 +181,13 @@ public class Controlador implements Serializable{
 		    number = scan.nextInt();
 		} while (number < 0 || number > procesos.size());
 		System.out.println("Thank you!");
-		scan.close();
+		 
 		return procesos.get(number);
 	}
 	
 	public void crearPaso(String pregunta, Tarea tarea, boolean opcion) {
 		if(opcion) {
-			SeleccionMult paso = new SeleccionMult(pregunta, tarea.getGrupo());
+			SeleccionMult paso = new SeleccionMult(pregunta, tarea.getGrupo(),consecutivoPaso);
 			System.out.println("Add option? 1:Yes,0:No");
 			boolean op = pedirOpcion();
 			while(op) {
@@ -193,9 +198,10 @@ public class Controlador implements Serializable{
 			}
 			tarea.agregarPaso(paso);
 		} else {
-			RespuestaCorta paso = new RespuestaCorta(pregunta,tarea.getGrupo());
+			RespuestaCorta paso = new RespuestaCorta(pregunta,tarea.getGrupo(),consecutivoPaso++);
 			tarea.agregarPaso(paso);
 		}
+		consecutivoPaso++;
 	}
 	
 	public String getUsuario() {
@@ -209,7 +215,8 @@ public class Controlador implements Serializable{
 	}
 	
 	public void iniciarProceso() throws Exception {
-		Instance instancia = new Instance(escogerProceso());
+		Instance instancia = new Instance(escogerProceso(),consecutivoInstancia);
+		consecutivoInstancia++;
 		instancia.guardarInic(usuario);
 		instancias.add(instancia);
 		
@@ -239,7 +246,7 @@ public class Controlador implements Serializable{
 		    number = scan.nextInt();
 		} while (number < 0 || number > proceso.size());
 		System.out.println("Thank you!");
-		scan.close();
+		 
 		return proceso.get(number);
 	}
 	
@@ -277,7 +284,7 @@ public class Controlador implements Serializable{
 		    number = scan.nextInt();
 		} while (number < 0 || number > tarea.count());
 		System.out.println("Thank you!");
-		scan.close();
+		 
 		tarea.eliminarPaso(number);
 	}
 	

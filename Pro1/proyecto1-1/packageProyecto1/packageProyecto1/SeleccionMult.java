@@ -12,8 +12,8 @@ public class SeleccionMult extends Paso implements Serializable{
 	ArrayList<String> respuestas;
 	int seleccion;
 	
-	public SeleccionMult(String pregunta, Grupo grupo) {
-		super(pregunta, grupo,0);
+	public SeleccionMult(String pregunta, Grupo grupo,int counter) {
+		super(pregunta, grupo,0,counter);
 		respuestas = new ArrayList<String>();
 	}
 	public void agregarRespuestas(String respuesta) {

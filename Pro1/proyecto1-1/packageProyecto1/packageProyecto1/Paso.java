@@ -8,17 +8,15 @@ public class Paso implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	String codigo;
-	public static int counter = 0;
 	String pregunta;
 	Grupo grupo;
 	int tipo;
 	
-	public Paso(String pregunta, Grupo grupo,int tipo) {
+	public Paso(String pregunta, Grupo grupo,int tipo,int counter) {
 		this.pregunta = pregunta;
 		this.grupo = grupo;
 		codigo = "P-" + counter;
-		counter++;
-	}
+		}
 	
 	public String getCodigo() {
 		return codigo;

@@ -15,15 +15,13 @@ public class main {
 	public static void main(String[] args) {
 		
 		main console = new main();
-		/*try {
+		try {
             controlador = Controlador.CargarDatos();
             System.out.println("El archivo se cargo correctamente");
         } catch (Exception e) {
             controlador = new Controlador();
             System.out.println("Error al cargar los datos");
         }
-		*/
-		controlador = new Controlador();
 		console.logIn();
 		while (true) {
 			console.menu();
@@ -184,8 +182,7 @@ public class main {
 		} while (respuesta < 0 || respuesta > max);
 		
 		switch(respuesta) {
-		case 0: /*try {
-				scan.close();
+		case 0: try {
 				Controlador.GuardarDatos(controlador);
 				System.out.println("Los datos se guardaron correctamente");
 			} catch (FileNotFoundException e) {
@@ -193,7 +190,7 @@ public class main {
 			} catch (IOException e) {
 				System.out.println("Los datos no se guardaron correctamente");
 				e.printStackTrace();
-			} System.exit(0);*/
+			} System.exit(0);
 		case 1: verProcesos(); break;
 		case 2: iniciarProceso(); break;
 		case 3: completarPaso(); break;
