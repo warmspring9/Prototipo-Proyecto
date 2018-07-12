@@ -19,7 +19,7 @@ public class Instance implements Serializable{
 	
 	public Instance(Proceso proceso,int counter) {
 		this.proceso = proceso;
-		codigo = "Ins-" + counter;
+		codigo = "Ins-" + counter; 
 	}
 	public Proceso getProceso() {
 		return proceso;
