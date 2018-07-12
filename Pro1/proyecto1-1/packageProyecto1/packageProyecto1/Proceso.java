@@ -5,16 +5,18 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Proceso implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String codigo;
-	public static int counter = 0;
 	String nombre;
 	LocalDateTime fecha;
 	ArrayList<Tarea> tareas = new ArrayList<Tarea>();
 	
-	public Proceso(String nombre) {
+	public Proceso(String nombre,int counter) {
 		this.nombre = nombre;
 		codigo = "Pr-" + counter;
-		counter++;
 		fecha = LocalDateTime.now();
 	}
 	

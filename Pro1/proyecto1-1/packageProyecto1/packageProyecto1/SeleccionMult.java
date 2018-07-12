@@ -1,14 +1,19 @@
 package packageProyecto1;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SeleccionMult extends Paso{
+public class SeleccionMult extends Paso implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ArrayList<String> respuestas;
 	int seleccion;
 	
-	public SeleccionMult(String pregunta, Grupo grupo) {
-		super(pregunta, grupo,0);
+	public SeleccionMult(String pregunta, Grupo grupo,int counter) {
+		super(pregunta, grupo,0,counter);
 		respuestas = new ArrayList<String>();
 	}
 	public void agregarRespuestas(String respuesta) {

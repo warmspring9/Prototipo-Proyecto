@@ -3,6 +3,7 @@ package packageProyecto1;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.NotSerializableException;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
@@ -15,7 +16,7 @@ public class main {
 		
 		main console = new main();
 		try {
-            controlador = controlador.CargarDatos();
+            controlador = Controlador.CargarDatos();
             System.out.println("El archivo se cargo correctamente");
         } catch (Exception e) {
             controlador = new Controlador();
@@ -64,8 +65,6 @@ public class main {
 				return;
 			}
 			grupo.getNombre();
-			System.out.println((grupo == null)?"caca":"nocaca");
-			System.out.println(controlador.crearUsuario(username, password, grupo));
 		} while (controlador.crearUsuario(username, password, grupo));
 	}
 	
@@ -184,12 +183,14 @@ public class main {
 		
 		switch(respuesta) {
 		case 0: try {
-				controlador.GuardarDatos(controlador);
+				Controlador.GuardarDatos(controlador);
+				System.out.println("Los datos se guardaron correctamente");
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
+				System.out.println("Los datos no se guardaron correctamente");
 				e.printStackTrace();
-			} System.exit(0);;
+			} System.exit(0);
 		case 1: verProcesos(); break;
 		case 2: iniciarProceso(); break;
 		case 3: completarPaso(); break;

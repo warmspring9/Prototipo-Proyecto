@@ -4,15 +4,17 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Tarea implements Serializable{
-	public static int counter = 0;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String codigo;
 	ArrayList<Paso> Pasos = new ArrayList<Paso>();
 	Grupo group;
 	
-	public Tarea(Grupo group) {
+	public Tarea(Grupo group,int counter) {
 		this.group = group;
 		codigo = "T-" + counter;
-		counter++;
 	}
 	
 	public void agregarPaso(Paso ingresado) {
@@ -22,7 +24,6 @@ public class Tarea implements Serializable{
 	public String getCodigo() {
 		return codigo;
 	}
-	
 	public Paso get(int e) {
 		return Pasos.get(e);
 	}
