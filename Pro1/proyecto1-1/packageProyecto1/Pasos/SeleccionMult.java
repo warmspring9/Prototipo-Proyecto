@@ -1,8 +1,10 @@
-package packageProyecto1;
+package Pasos;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import packageProyecto1.Grupo;
 
 public class SeleccionMult extends Paso implements Serializable{
 	/**
@@ -23,7 +25,7 @@ public class SeleccionMult extends Paso implements Serializable{
 		seleccion = respuesta;
 	}
 	public void print() {
-		super.print();
+		System.out.println(super.getPregunta());
 		for (int i = 0; i < respuestas.size(); i++) {
 			System.out.print(" " + i + " ");
 			System.out.println(respuestas.get(i));

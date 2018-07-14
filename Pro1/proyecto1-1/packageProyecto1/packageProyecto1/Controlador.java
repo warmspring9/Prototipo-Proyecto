@@ -8,6 +8,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import Pasos.FactoryPasos;
+import Pasos.Paso;
+import Pasos.RespuestaCorta;
+import Pasos.SeleccionMult;
+import Pasos.TypoPaso;
+
 import java.io.Serializable;
 
 public class Controlador implements Serializable{
@@ -185,22 +192,8 @@ public class Controlador implements Serializable{
 		return procesos.get(number);
 	}
 	
-	public void crearPaso(String pregunta, Tarea tarea, boolean opcion) {
-		if(opcion) {
-			SeleccionMult paso = new SeleccionMult(pregunta, tarea.getGrupo(),consecutivoPaso);
-			System.out.println("Add option? 1:Yes,0:No");
-			boolean op = pedirOpcion();
-			while(op) {
-				paso.agregarRespuestas(pedirString("option"));
-				System.out.println("Add adicional option? yes:1 no:0");
-				op = pedirOpcion();
-				
-			}
-			tarea.agregarPaso(paso);
-		} else {
-			RespuestaCorta paso = new RespuestaCorta(pregunta,tarea.getGrupo(),consecutivoPaso++);
-			tarea.agregarPaso(paso);
-		}
+	public void crearPaso(String pregunta, Tarea tarea, TypoPaso opcion) {
+		tarea.agregarPaso(FactoryPasos.crearPaso(opcion, pregunta, tarea.getGrupo(), consecutivoPaso));
 		consecutivoPaso++;
 	}
 	
@@ -258,8 +251,26 @@ public class Controlador implements Serializable{
 		} else {
 			String pregunta = pedirString("pregunta");
 			Tarea tarea = escogerTarea(proceso);
-			System.out.println("Short Answear: 0 or Multiple Seleccion:1");
-			crearPaso(pregunta,tarea,pedirOpcion());
+			crearPaso(pregunta,tarea,escogerPaso());
+		}
+	}
+	public TypoPaso escogerPaso() {
+		System.out.println("Pick the step type");
+		System.out.println("0 - Multiple Answear");
+		System.out.println("1 - Short Answear");
+		int respuesta;
+		do {
+		    System.out.println("Please enter a valid number!");
+		    while (!scan.hasNextInt()) {
+		        System.out.println("That's not a number!");
+		        scan.next();
+		    }
+		    respuesta = scan.nextInt();
+		} while (respuesta < 0 || respuesta > 1 );
+		switch(respuesta) {
+		case 0: return TypoPaso.SelecMult;
+		case 1: return TypoPaso.RespCorta;
+		default: return null;
 		}
 	}
 	

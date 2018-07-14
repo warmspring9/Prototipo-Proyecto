@@ -7,6 +7,8 @@ import java.io.NotSerializableException;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
+import Pasos.TypoPaso;
+
 public class main {
 	static Controlador controlador;
 	static Scanner scan = new Scanner(System.in);
@@ -96,14 +98,32 @@ public class main {
 			boolean op2 = pedirOpcion();
 			while (op2) {
 				String pregunta = pedirString("instruccion");
-				System.out.println("Is this a multiple question step 1:yes,0:no");
-				boolean opcion = pedirOpcion();
-				controlador.crearPaso(pregunta, tarea,opcion);
+				controlador.crearPaso(pregunta, tarea,escogerPaso());
 				System.out.println("Add an aditional step? 1:Yes,0:no");
 				op2 = pedirOpcion();
 			}
 			System.out.println("Add an aditional task? 1:Yes,0:no");
 			op = pedirOpcion();
+		}
+	}
+	
+	public TypoPaso escogerPaso() {
+		System.out.println("Pick the step type");
+		System.out.println("0 - Multiple Answear");
+		System.out.println("1 - Short Answear");
+		int respuesta;
+		do {
+		    System.out.println("Please enter a valid number!");
+		    while (!scan.hasNextInt()) {
+		        System.out.println("That's not a number!");
+		        scan.next();
+		    }
+		    respuesta = scan.nextInt();
+		} while (respuesta < 0 || respuesta > 1 );
+		switch(respuesta) {
+		case 0: return TypoPaso.SelecMult;
+		case 1: return TypoPaso.RespCorta;
+		default: return null;
 		}
 	}
 	

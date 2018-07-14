@@ -3,6 +3,8 @@ package packageProyecto1;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import Pasos.Paso;
+
 public class Tarea implements Serializable{
 	/**
 	 * 

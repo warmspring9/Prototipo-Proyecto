@@ -1,8 +1,10 @@
-package packageProyecto1;
+package Pasos;
 
 import java.io.Serializable;
 
-public class Paso implements Serializable{
+import packageProyecto1.Grupo;
+
+public abstract class Paso implements Serializable{
 	/**
 	 * 
 	 */
@@ -30,9 +32,7 @@ public class Paso implements Serializable{
 		this.pregunta = pregunta;
 	}
 	
-	public void print() {
-		System.out.println(pregunta);
-	}
+	public abstract void print();
 	
 	public Grupo getGrupo() {
 		return grupo;
@@ -41,8 +41,5 @@ public class Paso implements Serializable{
 		return tipo;
 	}
 
-	public void completar() {
-		// TODO Auto-generated method stub
-		
-	}
+	public abstract void completar();
 }

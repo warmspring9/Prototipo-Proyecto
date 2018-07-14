@@ -1,7 +1,9 @@
-package packageProyecto1;
+package Pasos;
 
 import java.io.Serializable;
 import java.util.Scanner;
+
+import packageProyecto1.Grupo;
 
 public class RespuestaCorta extends Paso implements Serializable {
 	/**
@@ -14,7 +16,7 @@ public class RespuestaCorta extends Paso implements Serializable {
 		super(pregunta,grupo,1,counter);
 	}
 	public void print() {
-		super.print();
+		System.out.println(super.getPregunta());
 		System.out.println("________");
 	}
 	public void llenarForm(String respuesta) {

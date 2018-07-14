@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.Date;
 
+import Pasos.Paso;
+
 public class Instance implements Serializable{
 	/**
 	 * 
