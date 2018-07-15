@@ -143,31 +143,7 @@ public class Controlador implements Serializable{
 		consecutivoTarea++;
 		proceso.agregarTarea(tarea);
 		return tarea;
-	}
-	
-	public String pedirString(String campo) {
-		String respuestas;
-		System.out.println("Insert " + campo);
-		while (!scan.hasNext()) {
-			System.out.println("Please enter a valid " + campo);
-			scan.next();
-		}
-		respuestas = scan.next();
-		 
-		return respuestas;
-	}
-	
-	public boolean pedirOpcion() {
-		Scanner scan = new Scanner(System.in);
-		int respuesta;
-		while (!scan.hasNextInt()) {
-			System.out.println("Please choose 1 or 0");
-			scan.next();
-		}
-		respuesta = scan.nextInt();
-		 
-		return (respuesta == 1)?true:false;
-	}
+	}	
 	
 	public Proceso escogerProceso() throws Exception {
 		Scanner scan = new Scanner(System.in);
@@ -246,10 +222,10 @@ public class Controlador implements Serializable{
 	public void agregarAProceso() throws Exception {
 		Proceso proceso = escogerProceso();
 		System.out.println("Add a task:1 or step:0");
-		if(pedirOpcion()) {
+		if(InputHelper.pedirOpcion()) {
 			crearTarea(proceso);
 		} else {
-			String pregunta = pedirString("pregunta");
+			String pregunta = InputHelper.pedirString("pregunta");
 			Tarea tarea = escogerTarea(proceso);
 			crearPaso(pregunta,tarea,escogerPaso());
 		}
@@ -302,7 +278,7 @@ public class Controlador implements Serializable{
 	public void eliminarDeProceso() throws Exception {
 		Proceso proceso = escogerProceso();
 		System.out.println("Delete a task:1 or step:0");
-		if(pedirOpcion()) {
+		if(InputHelper.pedirOpcion()) {
 			eliminarTarea(proceso);
 		} else {
 			eliminarPaso(proceso);

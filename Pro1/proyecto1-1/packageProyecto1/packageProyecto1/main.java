@@ -30,24 +30,13 @@ public class main {
 		}
 }
 	
-	public String pedirString(String campo) {
-		String respuestas;
-		System.out.println("Insert " + campo);
-		while (!scan.hasNext()) {
-			System.out.println("Please enter a valid " + campo);
-			scan.next();
-		}
-		respuestas = scan.next();
-		return respuestas;
-	}
-	
 	public void logIn() {
 		
 		String username;
 		String password;
 		do {
-			username = pedirString("username");
-			password = pedirString("password");
+			username = InputHelper.pedirString("username");
+			password = InputHelper.pedirString("password");
 		} while(!controlador.logIn(username, password));
 
 	}
@@ -57,8 +46,8 @@ public class main {
 		String password;
 		Grupo grupo = null;
 		do {
-			username = pedirString("username");
-			password = pedirString("password");
+			username = InputHelper.pedirString("username");
+			password = InputHelper.pedirString("password");
 			System.out.println("Escoger un grupo");
 			try {
 				grupo = controlador.escogerGrupo();
@@ -70,21 +59,11 @@ public class main {
 		} while (controlador.crearUsuario(username, password, grupo));
 	}
 	
-	public boolean pedirOpcion() {
-		int respuesta;
-		while (!scan.hasNextInt()) {
-			System.out.println("Please choose 1 or 0");
-			scan.next();
-		}
-		respuesta = scan.nextInt();
-		return (respuesta == 1)?true:false;
-	}
-	
 	public void crearProceso() {
-		Proceso proceso = controlador.crearProceso(pedirString("nombre"));
+		Proceso proceso = controlador.crearProceso(InputHelper.pedirString("nombre"));
 		
 		System.out.println("Do you want to insert tasks to this procedure 1:yes,0:no");
-		boolean op = pedirOpcion();
+		boolean op = InputHelper.pedirOpcion();
 		while (op) {
 			Tarea tarea = null;
 			try {
@@ -95,15 +74,15 @@ public class main {
 			}
 			
 			System.out.println("Do you want to insert steps to this task 1:yes,0:no");
-			boolean op2 = pedirOpcion();
+			boolean op2 = InputHelper.pedirOpcion();
 			while (op2) {
-				String pregunta = pedirString("instruccion");
+				String pregunta = InputHelper.pedirString("instruccion");
 				controlador.crearPaso(pregunta, tarea,escogerPaso());
 				System.out.println("Add an aditional step? 1:Yes,0:no");
-				op2 = pedirOpcion();
+				op2 = InputHelper.pedirOpcion();
 			}
 			System.out.println("Add an aditional task? 1:Yes,0:no");
-			op = pedirOpcion();
+			op = InputHelper.pedirOpcion();
 		}
 	}
 	
@@ -128,7 +107,7 @@ public class main {
 	}
 	
 	public void crearGrupo() {
-		String nombre = pedirString("new group");
+		String nombre = InputHelper.pedirString("new group");
 		controlador.crearGrupo(nombre);
 	}
 	
@@ -143,7 +122,7 @@ public class main {
 	
 	public void actualizarProceso() {
 		System.out.println("Delete from:1 o Add to:0");
-		if(pedirOpcion()) {
+		if(InputHelper.pedirOpcion()) {
 			try {
 				controlador.eliminarDeProceso();
 			} catch (Exception e) {
