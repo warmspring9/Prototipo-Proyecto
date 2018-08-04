@@ -23,10 +23,11 @@ public class RespuestaCorta extends Paso implements Serializable {
 		this.respuesta = respuesta;
 	}
 	@Override 
-	public void completar() {
+	public String completar() {
 		Scanner scan = new Scanner(System.in);
 		print();
 		System.out.println("Ingrese su respuestas");
 		respuesta = scan.next();
+		return respuesta;
 	}
 }

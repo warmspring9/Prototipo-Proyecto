@@ -3,9 +3,9 @@ package packageProyecto1;
 import java.util.Scanner;
 
 public class InputHelper {
-	static Scanner scan;
 	
 	public static String pedirString(String campo) {
+		Scanner scan = new Scanner(System.in);
 		String respuestas;
 		System.out.println("Insert " + campo);
 		while (!scan.hasNext()) {
@@ -13,7 +13,6 @@ public class InputHelper {
 			scan.next();
 		}
 		respuestas = scan.next();
-		scan.close();
 		return respuestas;
 	}
 	
@@ -25,7 +24,6 @@ public class InputHelper {
 			scan.next();
 		}
 		respuesta = scan.nextInt();
-		scan.close();
 		return (respuesta == 1)?true:false;
 	}
 }

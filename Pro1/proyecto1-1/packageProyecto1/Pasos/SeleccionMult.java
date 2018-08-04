@@ -33,7 +33,7 @@ public class SeleccionMult extends Paso implements Serializable{
 		System.out.println("Pick one");
 	}
 	@Override
-	public void completar() {
+	public String completar() {
 		Scanner scan = new Scanner(System.in);
 		for(int i = 0;i<respuestas.size();i++) {
 			System.out.println(i + " - " + respuestas.get(i));
@@ -49,5 +49,6 @@ public class SeleccionMult extends Paso implements Serializable{
 		    number = scan.nextInt();
 		} while (number < 0 || number > respuestas.size());
 		seleccion = number;
+		return Integer.toString(seleccion);
 	}
 }

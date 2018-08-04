@@ -41,5 +41,5 @@ public abstract class Paso implements Serializable{
 		return tipo;
 	}
 
-	public abstract void completar();
+	public abstract String completar();
 }

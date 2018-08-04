@@ -250,6 +250,10 @@ public class Controlador implements Serializable{
 		}
 	}
 	
+	@Override
+	public Controlador clone() {
+		return instance;
+	}
 	public void eliminarTarea(Proceso proceso) throws Exception {
 		proceso.eliminarTarea(escogerTarea(proceso));
 	}

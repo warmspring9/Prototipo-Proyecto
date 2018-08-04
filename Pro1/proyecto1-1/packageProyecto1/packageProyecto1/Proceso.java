@@ -29,8 +29,8 @@ public class Proceso implements Serializable{
 	}
 	
 	public int search(String codigo) {
-		for(int i = 0;i > tareas.size();i++) {
-			if(tareas.get(i).equals(codigo)) {
+		for(int i = 0;i < tareas.size();i++) {
+			if(tareas.get(i).getCodigo().equals(codigo)) {
 				return i;
 			}
 		}
