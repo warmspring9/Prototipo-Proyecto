@@ -90,6 +90,7 @@ public class main {
 		System.out.println("Pick the step type");
 		System.out.println("0 - Multiple Answear");
 		System.out.println("1 - Short Answear");
+		System.out.println("2 - Yes/No Answear");
 		int respuesta;
 		do {
 		    System.out.println("Please enter a valid number!");
@@ -98,10 +99,11 @@ public class main {
 		        scan.next();
 		    }
 		    respuesta = scan.nextInt();
-		} while (respuesta < 0 || respuesta > 1 );
+		} while (respuesta < 0 || respuesta > 2 );
 		switch(respuesta) {
 		case 0: return TypoPaso.SelecMult;
 		case 1: return TypoPaso.RespCorta;
+		case 2: return TypoPaso.YesNo;
 		default: return null;
 		}
 	}

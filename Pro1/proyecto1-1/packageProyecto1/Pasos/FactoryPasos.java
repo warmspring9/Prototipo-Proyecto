@@ -16,6 +16,7 @@ public class FactoryPasos {
 			} 
 			return paso;
 		case RespCorta: return new RespuestaCorta(pregunta,grupo,consecutivo);
+		case YesNo: return new YesNo(pregunta,grupo,consecutivo);
 		default: return null;
 		}
 	}

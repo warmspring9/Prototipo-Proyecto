@@ -83,5 +83,10 @@ class Tests {
 		po.agregarTarea(t2);
 		assertEquals(2, po.size());
 	}
+	@Test
+	void testLogIn() {
+		cont = Controlador.getInstance();
+		assertTrue(cont.logIn("Admin", "4DM1N"));
+	}
 
 }

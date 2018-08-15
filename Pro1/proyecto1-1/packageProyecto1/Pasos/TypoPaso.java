@@ -2,5 +2,6 @@ package Pasos;
 
 public enum TypoPaso {
 	SelecMult,
-	RespCorta;
+	RespCorta,
+	YesNo;
 }

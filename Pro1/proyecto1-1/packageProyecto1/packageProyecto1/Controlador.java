@@ -11,8 +11,6 @@ import java.util.Scanner;
 
 import Pasos.FactoryPasos;
 import Pasos.Paso;
-import Pasos.RespuestaCorta;
-import Pasos.SeleccionMult;
 import Pasos.TypoPaso;
 
 import java.io.Serializable;
@@ -53,14 +51,14 @@ public class Controlador implements Serializable{
         stream.close();
         
     }
-    public static Controlador CargarDatos() throws FileNotFoundException, IOException, ClassNotFoundException{
+    
+	public static Controlador CargarDatos() throws FileNotFoundException, IOException, ClassNotFoundException{
         FileInputStream file = new FileInputStream("persistencia.dat");
         ObjectInputStream stream = new ObjectInputStream(file);
         Controlador data = (Controlador)stream.readObject();
         stream.close();
         return data;
     }
-
 
 	public boolean logIn(String username, String password) {
 		if(username.equals(Admin)) {
@@ -230,10 +228,12 @@ public class Controlador implements Serializable{
 			crearPaso(pregunta,tarea,escogerPaso());
 		}
 	}
+	
 	public TypoPaso escogerPaso() {
 		System.out.println("Pick the step type");
 		System.out.println("0 - Multiple Answear");
 		System.out.println("1 - Short Answear");
+		System.out.println("2 - Yes/No Answear");
 		int respuesta;
 		do {
 		    System.out.println("Please enter a valid number!");
@@ -242,10 +242,11 @@ public class Controlador implements Serializable{
 		        scan.next();
 		    }
 		    respuesta = scan.nextInt();
-		} while (respuesta < 0 || respuesta > 1 );
+		} while (respuesta < 0 || respuesta > 2 );
 		switch(respuesta) {
 		case 0: return TypoPaso.SelecMult;
 		case 1: return TypoPaso.RespCorta;
+		case 2: return TypoPaso.YesNo;
 		default: return null;
 		}
 	}
@@ -254,6 +255,7 @@ public class Controlador implements Serializable{
 	public Controlador clone() {
 		return instance;
 	}
+	
 	public void eliminarTarea(Proceso proceso) throws Exception {
 		proceso.eliminarTarea(escogerTarea(proceso));
 	}
@@ -311,6 +313,7 @@ public class Controlador implements Serializable{
 			System.out.println("ERROR  at saving log");
 		};
 	}
+	
 	public int getInstanceSize() {
 		return instancias.size();
 	}
